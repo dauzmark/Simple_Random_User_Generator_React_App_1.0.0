@@ -21,11 +21,24 @@ class App extends React.Component {
     this.setState({ users: users.filter(user => user !== userObj) });
   };
 
+  addCard = () => {
+    // console.log("click");
+    axios.get("https://randomuser.me/api/").then(res => {
+      const users = res.data.results[0];
+      console.log(users);
+      this.setState({ users: [...this.state.users, users] });
+    });
+  };
+
   render() {
     console.log(this.state.users);
     return (
       <div className="container">
         <Card users={this.state.users} delCard={this.delCard} />
+        <hr />
+        <button className="btn btn-lg btn-success" onClick={this.addCard}>
+          Add Card
+        </button>
       </div>
     );
   }
