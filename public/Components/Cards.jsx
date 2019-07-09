@@ -1,7 +1,7 @@
 import React from "react";
 import CardItem from "./CardItem";
 
-export default function Card(props) {
+export default function Cards(props) {
   return (
     <div className="row">
       <CardItem users={props.users} handleClick={props.delCard} />

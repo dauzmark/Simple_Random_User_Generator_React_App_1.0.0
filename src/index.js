@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
 //
-import Card from "../public/Components/Card";
+import Cards from "../public/Components/Cards";
 
 class App extends React.Component {
   state = {
@@ -34,7 +34,7 @@ class App extends React.Component {
     console.log(this.state.users);
     return (
       <div className="container">
-        <Card users={this.state.users} delCard={this.delCard} />
+        <Cards users={this.state.users} delCard={this.delCard} />
         <hr />
         <button className="btn btn-lg btn-success" onClick={this.addCard}>
           Add Card
