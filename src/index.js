@@ -15,10 +15,17 @@ class App extends React.Component {
     });
   }
 
+  delCard = userObj => {
+    console.log(userObj);
+    const users = [...this.state.users];
+    this.setState({ users: users.filter(user => user !== userObj) });
+  };
+
   render() {
+    console.log(this.state.users);
     return (
       <div className="container">
-        <Card users={this.state.users} />
+        <Card users={this.state.users} delCard={this.delCard} />
       </div>
     );
   }
