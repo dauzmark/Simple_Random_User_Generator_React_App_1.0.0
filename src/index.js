@@ -10,7 +10,7 @@ class App extends React.Component {
     users: []
   };
   componentDidMount() {
-    axios.get("https://randomuser.me/api/?results=10").then(res => {
+    axios.get("https://randomuser.me/api/?results=12").then(res => {
       const users = res.data.results;
       this.setState({ users: users });
     });
@@ -22,6 +22,10 @@ class App extends React.Component {
     this.setState({ users: users.filter(user => user !== userObj) });
   };
 
+  clearCard = () => {
+    this.setState({ users: [] });
+  };
+
   addCard = () => {
     // console.log("click");
     axios.get("https://randomuser.me/api/").then(res => {
@@ -31,8 +35,15 @@ class App extends React.Component {
     });
   };
 
+  randomCard = () => {
+    axios.get("https://randomuser.me/api/?results=10").then(res => {
+      const users = res.data.results;
+      this.setState({ users: users });
+    });
+  };
+
   searchCard = name => {
-    axios.get(`https://randomuser.me/api/?results=1000`).then(res => {
+    axios.get(`https://randomuser.me/api/?results=500`).then(res => {
       const users = res.data.results;
       //console.log(users);
       for (let user in users) {
@@ -52,15 +63,22 @@ class App extends React.Component {
     //console.log(this.state.users);
     return (
       <div className="container">
+        <h1 className="text-center">Random People Generator</h1>
         <Cards users={this.state.users} delCard={this.delCard} />
         <hr />
         <CardSearch searchCard={this.searchCard} />
-        <button
-          className="btn btn-lg btn-success btn-block"
-          onClick={this.addCard}
-        >
-          Add Card
-        </button>
+        <hr />
+        <div className="d-flex">
+          <button className="btn btn-success m-2" onClick={this.addCard}>
+            Add Card
+          </button>
+          <button className="btn btn-primary m-2" onClick={this.randomCard}>
+            Get Random Card
+          </button>
+          <button className="btn btn-danger m-2" onClick={this.clearCard}>
+            Clear All Cards
+          </button>
+        </div>
       </div>
     );
   }

@@ -1,16 +1,28 @@
 import React from "react";
 
 export default function CardItem(props) {
-  // console.log(this.props.users);
+  console.log(props.users);
   const users = props.users.map(user => {
+    const color = user.gender === "male" ? "#00ccff" : "#FFC0CB";
+
     return (
       <div
         onClick={props.handleClick.bind(this, user)}
-        className="card m-3"
-        style={{ width: "10rem", height: "auto" }}
+        className="m-3 col-md-3 p-0"
+        style={{
+          width: "15rem",
+
+          backgroundColor: `${color}`,
+          boxShadow: "0 8px 6px -6px black"
+        }}
         key={1 + Math.random()}
       >
-        <img src={user.picture.large} className="card-img-top" alt="..." />
+        <img
+          src={user.picture.large}
+          className="card-img-top"
+          alt="..."
+          style={{ width: "100%" }}
+        />
         <div className="card-body">
           <h5 className="card-title">
             {user.name.first.toUpperCase()} {user.name.last.toUpperCase()}
