@@ -26,16 +26,25 @@ class App extends React.Component {
     // console.log("click");
     axios.get("https://randomuser.me/api/").then(res => {
       const users = res.data.results[0];
-      console.log(users);
+      //console.log(users);
       this.setState({ users: [...this.state.users, users] });
     });
   };
 
-  //TO BE EDITED!!!!!!!!!!
   searchCard = name => {
-    axios.get(`https://randomuser.me/api/?results=1&name=${name}`).then(res => {
+    axios.get(`https://randomuser.me/api/?results=1000`).then(res => {
       const users = res.data.results;
-      console.log(users);
+      //console.log(users);
+      for (let user in users) {
+        //console.log(users[user].name.first);
+        if (users[user].name.first === name) {
+          this.setState({
+            users: users.filter(user => user.name.first === name)
+          });
+        } else {
+          console.log(`The name ${name} does not exist in our database`);
+        }
+      }
     });
   };
 
