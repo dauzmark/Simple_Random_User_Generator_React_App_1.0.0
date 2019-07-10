@@ -9,12 +9,12 @@ class App extends React.Component {
   state = {
     users: []
   };
-  // componentDidMount() {
-  //   axios.get("https://randomuser.me/api/?results=10").then(res => {
-  //     const users = res.data.results;
-  //     this.setState({ users: users });
-  //   });
-  // }
+  componentDidMount() {
+    axios.get("https://randomuser.me/api/?results=10").then(res => {
+      const users = res.data.results;
+      this.setState({ users: users });
+    });
+  }
 
   delCard = userObj => {
     //console.log(userObj);
